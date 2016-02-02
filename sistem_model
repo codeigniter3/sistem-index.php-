@@ -1,0 +1,68 @@
+<?php
+class sistem_model extends CI_Model{
+	function tambah_kas(){
+		$data=array(
+			'date'=>$this->input->post('date'),
+			'no_kwintansi'=>$this->input->post('no_kwintansi'),
+			'flight'=>$this->input->post('flight'),
+			'keterangan'=>$this->input->post('keterangan'),
+			'pax'=>$this->input->post('pax'),
+			'jenis_pembayaran'=>$this->input->post('jenis_pembayaran'),
+			'penjualan_tunai'=>$this->input->post('penjualan_tunai'),
+			'penjualan_kas'=>$this->input->post('penjualan_kas'),
+			'saldo'=>$this->input->post('saldo'),
+			'penjualan_nontunai'=>$this->input->post('penjualan_nontunai'),
+			'belum_bayar'=>$this->input->post('belum_bayar'));
+			
+			$this->db->insert('kas_tiket',$data);
+		}
+		
+		function kas_list_data(){
+			$t=$this->db->get('kas_tiket');
+			return $t;
+		}
+		
+		function kas_edit(){
+			$this->db->where("id_tiket",$data->url->segment(3));
+			$t=$this->db->get('kas_tiket');
+			return $t;
+		}
+		
+		function kas_edit_submit(){
+			$data=array(
+			'date'=>$this->input->post('date'),
+			'no_kwintansi'=>$this->input->post('no_kwintansi'),
+			'flight'=>$this->input->post('flight'),
+			'keterangan'=>$this->input->post('keterangan'),
+			'pax'=>$this->input->post('pax'),
+			'jenis_pembayaran'=>$this->input->post('jenis_pembayaran'),
+			'penjualan_tunai'=>$this->input->post('penjualan_tunai'),
+			'penjualan_kas'=>$this->input->post('penjualan_kas'),
+			'saldo'=>$this->input->post('saldo'),
+			'penjualan_nontunai'=>$this->input->post('penjualan_nontunai'),
+			'belum_bayar'=>$this->input->post('belum_bayar'));
+			
+			$this->db->where('id_tiket',$this->input->post('id_tiket'));
+			$this->db->update('kas_tiket',$data);	
+		}
+		
+		function kas_delete($deltkt){
+			$this->db->where('id_tiket',$deltkt);
+			$q=$this->db->delete('kas_tiket');
+			return $t;	
+		}
+		
+		function caridata(){
+			$cr=$this->input->post('cari');
+			$this->db->like('no_kwintansi',$cr);
+			$query=$this->db->get('kas_tiket');
+			return $query->result();
+		}
+	}
+	
+
+
+
+
+
+?>
