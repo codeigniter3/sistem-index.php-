@@ -1,0 +1,27 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class sistem extends CI_Controller{
+	
+	function __construct(){
+		parent::__construct();
+		$this->load->model('sistem_model');
+	}
+	
+	function index(){
+		$data['requestpage']='templates';
+		$this->load->view('templates',$data);
+	}
+	
+	function home(){
+		$data['requestpage']='home';
+		$this->load->view('templates',$data);
+	}
+	function kas_tiket(){
+		$data['requestpage']='kas_tiket/form_tiket';
+		$this->load->view('templates',$data);
+	}
+	
+	function tambah_kas_tiket(){
+		$this->sistem_model->tambah_kas();
+	}
+}
